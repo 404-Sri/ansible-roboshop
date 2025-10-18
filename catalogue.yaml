@@ -66,15 +66,15 @@
       name: mongodb-mongosh
       state: present
 
-  - name: connnect to mongodb catalogue
-    ansible.builtin.command: mongosh mongodb.daws-sri.fun --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
-    register: catalogue_output
+  # - name: connnect to mongodb catalogue
+  #   ansible.builtin.command: mongosh mongodb.daws-sri.fun --quiet --eval "db.getMongo().getDBNames().indexOf('catalogue')"
+  #   register: catalogue_output
 
-  # # - name: evaluate cataalogue database
-  # #   community.mongodb.mongodb_shell:
-  # #     login_host: mongodb.daws-sri.fun
-  # #     eval: db.getMongo().getDBNames().indexOf('catalogue')
-  # #   register: catalogue_output
+  - name: evaluate cataalogue database
+    community.mongodb.mongodb_shell:
+      login_host: mongodb.daws-sri.fun
+      eval: db.getMongo().getDBNames().indexOf('catalogue')
+    register: catalogue_output
 
   - name: print catalogue output
     ansible.builtin.debug:
